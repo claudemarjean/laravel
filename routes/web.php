@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,24 +14,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    $articles = [
-            [
-                'title' => "mon premier article",
-                'content' => 'Si vous avez déjà un dépôt Git local configuré pour votre projet et que vous souhaitez le pousser vers un dépôt distant (repository) sur GitHub, vous pouvez suivre ces étape'
-            ],
-            [
-                'title' => "mon deuxième article",
-                'content' => 'Si vous avez déjà un dépôt Git local configuré pour votre projet et que vous souhaitez le pousser vers un dépôt distant (repository) sur GitHub, vous pouvez suivre ces étape'
-            ],
-            [
-                'title' => "mon troisième article",
-                'content' => 'Si vous avez déjà un dépôt Git local configuré pour votre projet et que vous souhaitez le pousser vers un dépôt distant (repository) sur GitHub, vous pouvez suivre ces étape'
-            ]
-        ];
-
-
-    return view('home',[
-        'articles' => $articles
-    ]);
-});
+Route::get('/', [App\Http\Controllers\PostController::class, 'index']);
+Route::get('{id}', [App\Http\Controllers\PostController::class, 'show']);
